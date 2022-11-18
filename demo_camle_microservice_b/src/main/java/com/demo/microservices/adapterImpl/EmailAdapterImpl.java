@@ -1,0 +1,32 @@
+package com.demo.microservices.adapterImpl;
+
+import com.demo.microservices.interfaces.NotificationAdapter;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
+
+public class EmailAdapterImpl implements NotificationAdapter {
+
+
+    public EmailAdapterImpl(JavaMailSender javaMailSender){
+        this.javaMailSender=javaMailSender;
+    }
+    private JavaMailSender javaMailSender;
+    @Override
+   @Async
+    public void sendNotification(String to, String subject, String content) {
+        try {
+          //  MimeMessage msg = javaMailSender.createMimeMessage();
+          //  MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(content);
+            javaMailSender.send(message);
+            System.out.println("Mail sent");
+        }catch (Exception ex){
+           ex.printStackTrace();
+        }
+
+    }
+}
