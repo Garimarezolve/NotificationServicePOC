@@ -2,6 +2,7 @@ package com.demo.microservices.service;
 
 
 import com.demo.microservices.adapterImpl.EmailAdapterImpl;
+import com.demo.microservices.adapterImpl.WhatsAppAdapterImpl;
 import com.demo.microservices.dto.NotificationEnum;
 import com.demo.microservices.interfaces.NotificationAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,25 @@ public class NotificationService {
     @Autowired
     public NotificationService(JavaMailSender javaMailSender){
         this.javaMailSender=javaMailSender;
-        notificationMap.put(NotificationEnum.EMAIL.toString(),new EmailAdapterImpl(javaMailSender));
+         notificationMap.put(NotificationEnum.EMAIL.toString(),new EmailAdapterImpl(javaMailSender));
+         notificationMap.put(NotificationEnum.SMS.toString(),new WhatsAppAdapterImpl());
     }
+//    @Autowired
+//    public NotificationService(){
+//        notificationMap.put(NotificationEnum.SMS.toString(),new WhatsAppAdapterImpl());
+//    }
     private Map<String, NotificationAdapter> notificationMap = new HashMap<>();
 
 
-    public void sendNotification(String type,String to ,String content,String subject) {
-            if(notificationMap.get(type.toUpperCase())!=null)
-            notificationMap.get(type.toUpperCase()).sendNotification(to,subject,content);
-            else
-                System.out.println("Invalid Type");
+    public void sendNotification(String type,String to ,String content,String subject,String countryCode) {
+        for (String str:notificationMap.keySet()) {
+            if(str.equalsIgnoreCase("email"))
+                notificationMap.get(type.toUpperCase()).sendNotification(to,subject,content,countryCode);
+            else{
+                notificationMap.get(type.toUpperCase()).sendNotification(to,subject,content,countryCode);
+             }
+    }
+
+
     }
 }

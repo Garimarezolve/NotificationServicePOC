@@ -16,8 +16,8 @@ public class UserChannelProducerRouter extends RouteBuilder {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Channel>channels=new ArrayList<>();
-        channels.add(new Channel("email","garima.sharma513@gmail.com"));
-        channels.add(new Channel("sms","garima.sharma513@gmail.com"));
+         channels.add(new Channel("email","garima.sharma513@gmail.com"));
+        channels.add(new Channel("sms","8904641847"));
         from("timer:active-mq-timer?period=1000")
                 .setBody(constant(mapper.writeValueAsString(
                          new UserChannel(UUID.randomUUID().toString(),

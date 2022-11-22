@@ -14,7 +14,7 @@ public class EmailAdapterImpl implements NotificationAdapter {
     private JavaMailSender javaMailSender;
     @Override
    @Async
-    public void sendNotification(String to, String subject, String content) {
+    public void sendNotification(String to, String subject, String content,String countryCode) {
         try {
           //  MimeMessage msg = javaMailSender.createMimeMessage();
           //  MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");

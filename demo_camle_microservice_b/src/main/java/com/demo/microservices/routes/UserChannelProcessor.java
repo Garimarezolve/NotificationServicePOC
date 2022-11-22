@@ -40,7 +40,7 @@ public class UserChannelProcessor {
             try {
                 mustache.execute(stringWriter, userChannel).flush();
                 notificationService.sendNotification(channel.getType(),channel.getContact(),
-                        "Notification Testing",stringWriter.toString());
+                        "Notification Testing",stringWriter.toString(),userChannel.getCountryCode());
             } catch (IOException e) {
                 e.printStackTrace();
             }
