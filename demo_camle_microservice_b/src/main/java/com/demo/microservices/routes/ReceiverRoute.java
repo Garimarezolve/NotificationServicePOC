@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ReceiverRoute extends RouteBuilder {
     @Autowired
     private UserChannelProcessor userChannelProcessor;
+
     @Override
     public void configure() throws Exception {
         from("activemq:my-activemq-queue").unmarshal().json(JsonLibrary.Jackson, UserChannel.class)

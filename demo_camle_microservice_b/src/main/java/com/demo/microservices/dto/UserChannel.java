@@ -1,7 +1,10 @@
 package com.demo.microservices.dto;
 
-import com.demo.microservices.dto.Channel;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Document(collection= "user_channel")
 public class UserChannel {
      private String userID;
      private String country;
