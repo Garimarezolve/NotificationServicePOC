@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.demo.microservices.Repository.UserChannelRepository;
-import com.demo.microservices.dto.UserChannel;
+import com.demo.microservices.dto.Notification;
 import com.demo.microservices.interfaces.UserChannelInterface;
 
 @Service
@@ -16,7 +16,7 @@ public class UserChannelService implements UserChannelInterface {
 
 	@Override
 	@Async
-	public void saveUserChannel(UserChannel userChannel) {
+	public void saveUserChannel(Notification userChannel) {
 		userChannelRepository.save(userChannel);
 
 	}

@@ -8,9 +8,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Channel {
+public class ChannelProviders {
 
-    private String  type;
-    private String contact;
+	private String type;
+	private String providerName;
+	private String providerId;
+	private String priority;
 
 }

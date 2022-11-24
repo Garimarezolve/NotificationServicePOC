@@ -1,9 +1,9 @@
 package com.demo.microservices.interfaces;
 
-import com.demo.microservices.dto.UserChannel;
+import com.demo.microservices.dto.Notification;
 
 public interface UserChannelInterface {
 
-	public void saveUserChannel(UserChannel userChannel);
+	public void saveUserChannel(Notification userChannel);
 
 }

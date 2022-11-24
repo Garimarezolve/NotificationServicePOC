@@ -1,10 +1,9 @@
 package com.demo.microservices.routes;
 
-import com.demo.microservices.dto.UserChannel;
+import com.demo.microservices.dto.Notification;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class WhatsAppReceiverRouter extends RouteBuilder {
@@ -14,7 +13,7 @@ public class WhatsAppReceiverRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-            from("activemq:my-activemq-queue").unmarshal().json(JsonLibrary.Jackson, UserChannel.class)
+            from("activemq:my-activemq-queue").unmarshal().json(JsonLibrary.Jackson, Notification.class)
                     .bean(userChannelProcessor).to("log:received-message-from-active-mq");
 
         }
