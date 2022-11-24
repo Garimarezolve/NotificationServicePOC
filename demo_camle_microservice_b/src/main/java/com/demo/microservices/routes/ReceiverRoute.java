@@ -13,10 +13,10 @@ public class ReceiverRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("activemq:my-activemq-queue").unmarshal().json(JsonLibrary.Jackson, UserChannel.class)
+        from("rabbitmq://localhost:5672/testing_mq?queue=testing_mq_queue&autoDelete=false&autoAck=false").unmarshal().json(JsonLibrary.Jackson, UserChannel.class)
                 .bean(userChannelProcessor)
-                .to("log:received-message-from-active-mq")
-                .to("activemq:producer-activemq-queue")
+                //.to("log:received-message-from-active-mq")
+                //.to("activemq:producer-activemq-queue")
                 .log("abhis ----->${body}")
                 ;
 

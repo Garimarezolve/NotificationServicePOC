@@ -15,7 +15,7 @@ public class UserChannelService implements UserChannelInterface {
 	UserChannelRepository userChannelRepository;
 
 	@Override
-//	@Async
+	@Async
 	public void saveUserChannel(UserChannel userChannel) {
 		userChannelRepository.save(userChannel);
 
