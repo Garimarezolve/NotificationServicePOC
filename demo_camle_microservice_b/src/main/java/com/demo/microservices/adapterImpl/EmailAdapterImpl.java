@@ -23,7 +23,6 @@ public class EmailAdapterImpl implements NotificationAdapter {
             message.setSubject(subject);
             message.setText(content);
             javaMailSender.send(message);
-            System.out.println("Mail sent");
         }catch (Exception ex){
            ex.printStackTrace();
         }

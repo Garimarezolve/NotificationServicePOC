@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReceiverRoute extends RouteBuilder {
     @Autowired
-    private UserChannelProcessor userChannelProcessor;
+    private NotificationProcessor notificationProcessor;
 
     @Override
     public void configure() throws Exception {
         from("rabbitmq://localhost:5672/testing_mq?queue=testing_mq_queue&autoDelete=false&autoAck=false").unmarshal().json(JsonLibrary.Jackson, Notification.class)
-                .bean(userChannelProcessor)
+                .bean(notificationProcessor)
                 //.to("log:received-message-from-active-mq")
                 //.to("activemq:producer-activemq-queue")
                 .log("abhis ----->${body}")
