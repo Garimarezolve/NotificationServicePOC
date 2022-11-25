@@ -22,15 +22,9 @@ public class UserChannelService{
 		notificationRepository.save(notification);
 		 
 	}
-	public Notification findNotification(String uu) {
-
-		return notificationRepository.findById(uu).orElse(null);
-
-	}
 
 	@Async
 	public void updateNotification(Notification notification) {
-		notification.setProcess(true);
 		notificationRepository.save(notification);
 
 	}

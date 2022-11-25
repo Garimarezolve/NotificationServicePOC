@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
+import com.demo.microservices.exception.NotificationChannelNotFoundException;
 import com.github.mustachejava.Mustache;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class NotificationProcessor {
 				notification.setProcess(true);
 				notificationInterface.updateNotification(notification);
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw new NotificationChannelNotFoundException("Email Does not exits");
 			}
 		});
 

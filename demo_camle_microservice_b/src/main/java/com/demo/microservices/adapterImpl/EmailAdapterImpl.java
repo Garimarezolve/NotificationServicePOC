@@ -15,17 +15,12 @@ public class EmailAdapterImpl implements NotificationAdapter {
     @Override
    @Async
     public void sendNotification(String to, String subject, String content,String countryCode) {
-        try {
-          //  MimeMessage msg = javaMailSender.createMimeMessage();
-          //  MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
             message.setSubject(subject);
             message.setText(content);
             javaMailSender.send(message);
-        }catch (Exception ex){
-           ex.printStackTrace();
-        }
+
 
     }
 }
