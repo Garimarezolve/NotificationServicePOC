@@ -1,6 +1,5 @@
 package com.demo.microservices.service;
 
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

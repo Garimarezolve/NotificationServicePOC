@@ -3,7 +3,6 @@ package com.demo.microservices.routes;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
-import java.util.UUID;
 
 import javax.mail.MessagingException;
 
@@ -15,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.microservices.Repository.NotificationRepository;
 import com.demo.microservices.dto.ChannelProviders;
 import com.demo.microservices.dto.Notification;
-import com.demo.microservices.interfaces.NotificationInterface;
 import com.demo.microservices.service.NotificationService;
 import com.demo.microservices.service.UserChannelService;
 
@@ -41,8 +38,8 @@ public class NotificationProcessor {
 	public void processMessage(Exchange exchange) throws IOException, MessagingException {
 
 		Notification notification = exchange.getIn().getBody(Notification.class);
+		notification.setId(notification.getNotifcationId());
 		notificationInterface.saveNotification(notification);
-		//Notification notifications=notificationInterface.findNotification(uu);
 		List<ChannelProviders> channels=notification.getChannelProviders();
 		StringWriter stringWriter = new StringWriter();
 		logger.info("Saving Userchannel messages : " + notification.getNotifcationId());
