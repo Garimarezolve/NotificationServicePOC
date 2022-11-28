@@ -21,6 +21,5 @@ public class EmailAdapterImpl implements NotificationAdapter {
             message.setText(content);
             javaMailSender.send(message);
 
-
     }
 }
