@@ -12,9 +12,9 @@ import lombok.ToString;
 
 public class ChannelProviders {
 
-	private String type;
-	private String providerName;
-	private String providerId;
-	private String priority;
+    private String type;
+    private String providerName;
+    private String providerId;
+    private String priority;
 
 }

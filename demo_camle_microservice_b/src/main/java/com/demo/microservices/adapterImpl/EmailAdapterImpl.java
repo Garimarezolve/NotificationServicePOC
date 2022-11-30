@@ -8,18 +8,20 @@ import org.springframework.scheduling.annotation.Async;
 public class EmailAdapterImpl implements NotificationAdapter {
 
 
-    public EmailAdapterImpl(JavaMailSender javaMailSender){
-        this.javaMailSender=javaMailSender;
-    }
     private JavaMailSender javaMailSender;
+
+    public EmailAdapterImpl(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
+
     @Override
-   @Async
-    public void sendNotification(String to, String subject, String content,String countryCode) {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(content);
-            javaMailSender.send(message);
+    @Async
+    public void sendNotification(String to, String subject, String content, String countryCode) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(content);
+        javaMailSender.send(message);
 
     }
 }

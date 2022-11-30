@@ -34,11 +34,7 @@ public class DeadQueueToOriginalQueue extends RouteBuilder {
                                 lt, lt,channels)
 
                 )))
-
-
-//          .to("rabbitmq:originalexchange?exchangeType=topic&routingKey=org&autoDelete=false&queue=originalequeue&queueargs=originalequeue.x-message-ttl=60000&autoAck=false&deadLetterExchange=duplicate&deadLetterExchangeType=topic&deadLetterRoutingKey=dup&deadLetterQueue=duplicatequeue")
                 .to("rabbitmq:originalexchange?exchangeType=topic&routingKey=org&autoDelete=false&queue=originalequeue&arg.queue.x-message-ttl=15000&deadLetterExchange=duplicate&deadLetterExchangeType=topic&autoAck=false&deadLetterRoutingKey=dup&deadLetterQueue=duplicatequeue");
-
 
         from("rabbitmq:duplicate?exchangeType=topic&routingKey=dup&autoDelete=false&queue=duplicatequeue")
 
@@ -47,12 +43,5 @@ public class DeadQueueToOriginalQueue extends RouteBuilder {
 
                 .to("log:myLoggingQueue")
                 .to("log:data wright to original queue");
-
-
-
-
-
     }
-
-
 }

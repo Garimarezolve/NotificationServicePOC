@@ -28,24 +28,8 @@ public class DeadQueueProcessor {
 
         Notification notification = exchange.getIn().getBody(Notification.class);
 
-        logger.info("Saving Userchannel messages : " + notification.getSenderId());
         notificationRepository.save(notification);
 
-        /*StringWriter stringWriter = new StringWriter();
-        List<Channel> channels=userChannel.getChannels();
-        channels.parallelStream().forEach(channel ->{
-            Mustache  mustache =  singleMustacheFactory.getMustacheFactory()
-                    .compile("templates/"+channel.getType().toLowerCase()+".mustache");
-            try {
-                mustache.execute(stringWriter, userChannel).flush();
-                notificationService.sendNotification(channel.getType(),channel.getContact(),
-                        "Notification Testing",stringWriter.toString(),userChannel.getCountryCode());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        logger.info(stringWriter.toString());
-*/
     }
 
 }

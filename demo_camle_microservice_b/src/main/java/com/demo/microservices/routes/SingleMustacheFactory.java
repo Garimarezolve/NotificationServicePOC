@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class SingleMustacheFactory {
 
-    public static  MustacheFactory getMustacheFactory() {
+    public static MustacheFactory getMustacheFactory() {
 
         return new DefaultMustacheFactory();
 

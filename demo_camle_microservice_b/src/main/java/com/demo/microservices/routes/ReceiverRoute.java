@@ -15,10 +15,7 @@ public class ReceiverRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("rabbitmq://localhost:5672/testing_mq?queue=testing_mq_queue&autoDelete=false&autoAck=false").unmarshal().json(JsonLibrary.Jackson, Notification.class)
                 .bean(notificationProcessor)
-                //.to("log:received-message-from-active-mq")
-                //.to("activemq:producer-activemq-queue")
-                .log("abhis ----->${body}")
-                ;
+        ;
 
     }
 }
