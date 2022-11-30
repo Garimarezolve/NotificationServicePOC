@@ -14,8 +14,9 @@ public class ReadGitURLService {
     @Async
     public void readFileURL() throws IOException {
             String singleUrl = "https://raw.githubusercontent.com/Garimarezolve/NotificationServicePOC/test/templates/email.mustache";
-            String fileUrl="/home/garimas/Documents/ApacheCamelDemoProjct/demo_camle_microservice_b/src/main/resources/templates/email.mustache";
-            downloadUsingNIO(singleUrl,  fileUrl);
+            //String fileUrl="/home/garimas/Documents/ApacheCamelDemoProjct/demo_camle_microservice_b/src/main/resources/templates/email.mustache";
+            String fileUrl="/home/abhishekr/Desktop/Latestpull/NotificationServicePOC/demo_camle_microservice_b/src/main/resources/templates/email.mustache";
+        downloadUsingNIO(singleUrl,  fileUrl);
         }
     private static void downloadUsingNIO(String urlStr, String file) throws IOException {
         URL url = new URL(urlStr);
