@@ -22,7 +22,7 @@ public class UserChannelProducerRouter extends RouteBuilder {
     	LocalDateTime lt
         = LocalDateTime.now();
 
-    	from("timer://runOnce?repeatCount=10&delay=5000").loop(10000)
+    	from("{{start.endpoint}}").loop(10000)
 		.setBody(constant(mapper.writeValueAsString(
                new Notification("Rezolve_system_01_D0A40BC8-F84C-4B2C-97B4-C3C1B1E31BC7",
             		   "Rezolve_system_01", "abhishekr2@dewsolutions.in", "return_url",
@@ -31,7 +31,7 @@ public class UserChannelProducerRouter extends RouteBuilder {
 
 
                 		))))
-		.to("rabbitmq://localhost:5672/testing_mq?queue=testing_mq_queue&autoDelete=false");
+		.to("{{to.endpoint}}");
 
     }
 }

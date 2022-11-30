@@ -6,7 +6,7 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DeadQueueReceiverRouter extends RouteBuilder {
     @Autowired
     private DeadQueueProcessor deadQueueProcessor;
@@ -14,7 +14,7 @@ public class DeadQueueReceiverRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        from("rabbitmq:originalexchange?exchangeType=topic&routingKey=org&queue=originalequeue&declare=false&autoDelete=false&arg.queue.x-message-ttl=15000&autoAck=false&deadLetterExchange=duplicate&deadLetterExchangeType=topic&deadLetterRoutingKey=dup&deadLetterQueue=duplicatequeue")
+        from("{{dead.queue.receive.uri}}")
 
                 .unmarshal().json(JsonLibrary.Jackson, Notification.class)
                 .bean(deadQueueProcessor).to("log:received-message-from-rabbit-mq")
