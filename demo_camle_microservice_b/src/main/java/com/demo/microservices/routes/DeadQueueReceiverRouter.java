@@ -18,7 +18,6 @@ public class DeadQueueReceiverRouter extends RouteBuilder {
 
                 .unmarshal().json(JsonLibrary.Jackson, Notification.class)
                 .bean(deadQueueProcessor).to("log:received-message-from-rabbit-mq")
-
                 .to("log:received-message-from-rabbit-mq");
 
 
